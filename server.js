@@ -10,7 +10,7 @@ require("dotenv").config();
 const axios = require("axios");
 
 // tell the server which port to run on. We can set this in our .env but we dont have to
-const PORT = 8001;
+const PORT = 10000;
 const WEATHER_API_KEY = process.env.WEATHER_API_KEY;
 const MOVIE_API_KEY = process.env.MOVIE_API_KEY;
 const LOCATION_API_KEY = process.env.LOCATION_API_KEY;
