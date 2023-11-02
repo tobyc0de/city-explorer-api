@@ -69,7 +69,7 @@ app.get("/movies", async (request, response) => {
     };
   });
 
-  response.json(movieDataWrangled);
+  response.json(movieDataWrangled[0]);
 });
 
 // start the server on our PORT, and give it a console.log to see it is working
