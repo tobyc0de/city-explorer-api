@@ -59,7 +59,7 @@ app.get("/", (request, response) => {
 app.get("/movies", async (request, response) => {
   const movieRes = await findMovies(request.query.city);
 
-  const movieDataWrangled = movieData.data.results.map((result) => {
+  const movieDataWrangled = movieRes.data.results.map((result) => {
     return {
       id: result.title + "_" + result.release_date,
       title: result.title,
