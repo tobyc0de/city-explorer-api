@@ -10,7 +10,7 @@ require("dotenv").config();
 const axios = require("axios");
 
 // tell the server which port to run on. We can set this in our .env but we dont have to
-const PORT = process.env.PORT || 8080;
+const PORT = 10000;
 const WEATHER_API_KEY = process.env.WEATHER_API_KEY;
 const MOVIE_API_KEY = process.env.MOVIE_API_KEY;
 
@@ -41,23 +41,35 @@ async function findCity(lat, lon) {
 
 async function findMovies(cityname) {
   const moviesAPI = `https://api.themoviedb.org/3/search/movie?api_key=${MOVIE_API_KEY}&query=${cityname}`;
-  const moviedata = await axios.get(moviesAPI);
-  return moviedata.data;
+  const movieData = await axios.get(moviesAPI);
+
+  return movieData;
 }
 
 // Create an API endpoint of `/weather` that processes a `GET` request that contains `lat`, `lon` and `searchQuery` information.
 app.get("/", (request, response) => {
   response.json("whoop whoop");
 });
-
-app.get("/weather", async (request, response) => {
-  const weatherRes = await findCity(request.query.lat, request.query.lon);
-  response.json(weatherRes);
-});
+//UNCOMMENT THIS TO SHOW WEATHER AGAIN!
+// app.get("/weather", async (request, response) => {
+//   const weatherRes = await findCity(request.query.lat, request.query.lon);
+//   response.json(weatherRes);
+// });
 
 app.get("/movies", async (request, response) => {
   const movieRes = await findMovies(request.query.city);
-  response.json(movieRes);
+
+  const movieDataWrangled = movieData.data.results.map((result) => {
+    return {
+      id: result.title + "_" + result.release_date,
+      title: result.title,
+      overview: result.overview,
+      image_url: `https://image.tmdb.org/t/p/w500/${result.poster_path}`,
+      release_date: result.release_date,
+    };
+  });
+
+  response.json(movieDataWrangled);
 });
 
 // start the server on our PORT, and give it a console.log to see it is working
