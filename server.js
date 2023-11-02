@@ -51,10 +51,10 @@ app.get("/", (request, response) => {
   response.json("whoop whoop");
 });
 //UNCOMMENT THIS TO SHOW WEATHER AGAIN!
-// app.get("/weather", async (request, response) => {
-//   const weatherRes = await findCity(request.query.lat, request.query.lon);
-//   response.json(weatherRes);
-// });
+app.get("/weather", async (request, response) => {
+  const weatherRes = await findCity(request.query.lat, request.query.lon);
+  response.json(weatherRes);
+});
 
 app.get("/movies", async (request, response) => {
   const movieRes = await findMovies(request.query.city);
