@@ -64,7 +64,7 @@ app.get("/movies", async (request, response) => {
       id: result.title + "_" + result.release_date,
       title: result.title,
       overview: result.overview,
-      image_url: `https://image.tmdb.org/t/p/w500/${result.poster_path}`,
+      image_url: `https://image.tmdb.org/t/p/w500/` + result.poster_path,
       release_date: result.release_date,
     };
   });
