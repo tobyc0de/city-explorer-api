@@ -66,7 +66,7 @@ app.get("/request", async (request, response) => {
     response.json(wrangledData);
   } catch (error) {
     console.error("Error in /request: ", error);
-    response.status(500).json({ error: "An error occurred" });
+    response.status(500).json({ error: "An error occurred", error });
   }
 });
 
