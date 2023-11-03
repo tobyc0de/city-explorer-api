@@ -57,6 +57,7 @@ app.get("/request", async (request, response) => {
       lon: locationRes.data[0].lon,
       lat: locationRes.data[0].lat,
       location: locationRes.data[0].display_name,
+      mapImgUrl: `https://maps.locationiq.com/v3/staticmap?key=${LOCATION_API_KEY}&center=${locationRes.data[0].lat},${locationRes.data[0].lon}&markers=icon:large-blue-cutout|${locationRes.data[0].lat},${locationRes.data[0].lon}`,
       movie: movieRes.data.results[0].original_title,
       movieImg: movieRes.data.results[0].poster_path,
       weather: weatherRes.data,
